@@ -1,0 +1,22 @@
+{
+  "name": "xmldeserializer",
+  "description": "Deserialize an XML string to internal object or JSON.",
+  "version": "0.1.0",
+  "homepage": "https://github.com/ctigeek/NodeXmlDeserializer",
+  "repository": "https://github.com/ctigeek/NodeXmlDeserializer",
+  "author": "Steven Swenson",
+  "keywords": [
+    "xml",
+    "serializer",
+    "XMLSerializer",
+	"deserializer",
+	"XMLDeserializer"
+  ],
+  "main": "./lib/deserializer.js",
+  "dependencies": {},
+  "licenses": [
+    {
+      "type": "MIT"
+    }
+  ]
+}
