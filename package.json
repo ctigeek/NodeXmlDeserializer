@@ -1,6 +1,6 @@
 {
   "name": "xmldeserializer",
-  "description": "Deserialize an XML string to internal object or JSON.",
+  "description": "Node package to deserialize an XML string to object tree or JSON string.",
   "version": "0.1.0",
   "homepage": "https://github.com/ctigeek/NodeXmlDeserializer",
   "repository": "https://github.com/ctigeek/NodeXmlDeserializer",
