@@ -1,8 +1,25 @@
 ﻿
 var basicTest = function() {
-    var xml = "<root>";
+    var xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>";
+    xml += "<root>";
     xml += "<childelement someProp=\"somevalue\">";
     xml += "contents of child element";
+    xml += "</childelement>";
+    xml += "</root>";
+
+    var ds = require("../lib/xmldeserializer");
+    var elements = ds.deserialize(xml);
+    var jsonString = ds.getJson(elements);
+    console.log(jsonString);
+    var jsonObject = JSON.parse(jsonString);
+    console.log(JSON.stringify( jsonObject, null, 4));
+    console.log("done!");
+};
+
+var entitiesTest = function() {
+    var xml = "<root>";
+    xml += "<childelement someProp=\"somevalue\">";
+    xml += " and I quote, &quot this is important &quot blahblahblah. less than &lt greater than &gt apostrophe &apos ampersand &amp ";
     xml += "</childelement>";
     xml += "</root>";
 
@@ -101,9 +118,10 @@ var multipleNamespaceTest = function() {
 
 
 basicTest();
+entitiesTest();
 arrayTest();
 cDataTest();
 defaultNamespaceTest();
 namedNamespaceTest();
 multipleNamespaceTest();
-return;
+console.log("done.");
