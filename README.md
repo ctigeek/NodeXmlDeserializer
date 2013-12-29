@@ -12,7 +12,7 @@ Description: A simple and somewhat crude XML de-serializer package for Node.
     xml += "</childelement>";
     xml += "</root>";
 
-    var ds = require("../lib/xmldeserializer");
+    var ds = require("xmldeserializer");
     var elements = ds.deserialize(xml);
     var jsonString = ds.getJson(elements);
     console.log(jsonString);
