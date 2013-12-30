@@ -1,11 +1,14 @@
 ﻿
 var basicTest = function() {
-    var xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>";
-    xml += "<root>";
-    xml += "<childelement someProp=\"somevalue\">";
+    var xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?> \r\n";
+    xml += "<root> \r\n";
+    xml += "   <childelement someProp=\"somevalue\">";
     xml += "contents of child element";
-    xml += "</childelement>";
-    xml += "</root>";
+    xml += "</childelement> \r\n";
+    xml += "   <diffchildelement someProp=\"somevalue\">";
+    xml += "different contents of child element";
+    xml += "</diffchildelement> \r\n";
+    xml += " </root> ";
 
     var ds = require("../lib/xmldeserializer");
     var elements = ds.deserialize(xml);
