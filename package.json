@@ -12,7 +12,7 @@
 	"deserializer",
 	"XMLDeserializer"
   ],
-  "main": "./lib/deserializer.js",
+  "main": "./lib/xmldeserializer.js",
   "dependencies": {},
   "licenses": [
     {
