@@ -36,3 +36,28 @@ Limitations:
 * Only supports the 5 standard entities (quot, amp, apos, lt, gt). No support for custom defined entities... it will probably cause the parser to blow up.
 
 
+### Using xml deserializer with Express:
+```javascript
+var express = require("express");
+var app = express();
+
+// This will put the deserialized data into req.body for your route handlers to access.
+app.use(function(req, res, next) {
+    if (req.headers["content-type"] == "application/xml") {
+        req.rawBody = "";
+        req.setEncoding("utf8");
+        req.on('data', function(chunk) { 
+            req.rawBody += chunk;
+        });
+        req.on('end', function() {
+            var elements = xmldeserializer.deserialize(req.rawBody);
+            req.body = JSON.parse(xmldeserializer.getJson(elements));
+            next();
+        });
+    }
+    else {
+        next();
+    }
+});
+
+```
