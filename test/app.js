@@ -1,16 +1,17 @@
 ﻿
 var basicTest = function() {
     var xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?> \r\n";
-    xml += "<root> \r\n";
-    xml += "   <childelement someProp=\"somevalue\">";
+    xml += "<Root> \r\n";
+    xml += "   <ChildElement SomeProp=\"somevalue\">";
     xml += "contents of child element";
-    xml += "</childelement> \r\n";
-    xml += "   <diffchildelement someProp=\"somevalue\">";
+    xml += "</ChildElement> \r\n";
+    xml += "   <DiffChildElement SomeProp=\"somevalue\">";
     xml += "different contents of child element";
-    xml += "</diffchildelement> \r\n";
-    xml += " </root> ";
+    xml += "</DiffChildElement> \r\n";
+    xml += " </Root> ";
 
     var ds = require("../lib/xmldeserializer");
+    ds.convertToCamelCase(false);
     var elements = ds.deserialize(xml);
     var jsonString = ds.getJson(elements);
     console.log(jsonString);
@@ -36,17 +37,18 @@ var entitiesTest = function() {
 };
 
 var arrayTest = function() {
-    var xml = "<root>";
-    xml += "<listOfItems itemCategory=\"blue\">";
-    xml += "<item>lagoon</item>";
-    xml += "<item>man group</item>";
-    xml += "<item>christmas</item>";
-    xml += "<item>light special</item>";
-    xml += "</listOfItems>";
-    xml += "</root>";
+    var xml = "<Root>";
+    xml += "<ListOfItems ItemCategory=\"blue\">";
+    xml += "<Item>lagoon</Item>";
+    xml += "<Item>man group</Item>";
+    xml += "<Item>christmas</Item>";
+    xml += "<Item>light special</Item>";
+    xml += "</ListOfItems>";
+    xml += "</Root>";
 
     var ds = require("../lib/xmldeserializer");
-    var arrayOfArrayNames = new Array("item");
+    ds.convertToCamelCase(true);
+    var arrayOfArrayNames = new Array("Item");
     var elements = ds.deserialize(xml);
     var jsonString = ds.getJson(elements,arrayOfArrayNames);
     console.log(jsonString);
@@ -128,3 +130,4 @@ defaultNamespaceTest();
 namedNamespaceTest();
 multipleNamespaceTest();
 console.log("done.");
+
