@@ -1,13 +1,32 @@
-﻿
+﻿var simpleTest = function() {
+    var xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?> \r\n";
+    xml += "<Root> \r\n";
+    xml += "<ChildElement SomeProp=\"somevalue\">";
+    xml += "contents of child element";
+    xml += "</ChildElement> \r\n";
+    xml += "</Root>";
+
+    var ds = require("../lib/xmldeserializer");
+    ds.convertToCamelCase(false);
+    var elements = ds.deserialize(xml);
+    var jsonString = ds.getJson(elements);
+    console.log(jsonString);
+    var jsonObject = JSON.parse(jsonString);
+
+    console.log(JSON.stringify( jsonObject, null, 4));
+    console.log("done!");
+};
+
 var basicTest = function() {
     var xml = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?> \r\n";
     xml += "<Root> \r\n";
     xml += "   <ChildElement SomeProp=\"somevalue\">";
-    xml += "contents of child element";
+    xml += "contents of child element   ";
     xml += "</ChildElement> \r\n";
     xml += "   <DiffChildElement SomeProp=\"somevalue\">";
-    xml += "different contents of child element";
-    xml += "</DiffChildElement> \r\n";
+    xml += "   different contents of child element";
+    xml += "</DiffChildElement>    \r\n";
+    xml += "<EmptyChildElement someProp=\"yadda yadda\" someotherprop=\"blah blah blah\" emptyprop=\"\"/> \r\n";
     xml += " </Root> ";
 
     var ds = require("../lib/xmldeserializer");
@@ -121,6 +140,8 @@ var multipleNamespaceTest = function() {
     console.log("done!");
 };
 
+try {
+simpleTest();
 
 basicTest();
 entitiesTest();
@@ -130,4 +151,7 @@ defaultNamespaceTest();
 namedNamespaceTest();
 multipleNamespaceTest();
 console.log("done.");
-
+}
+catch (e) {
+    console.log(e);
+}
